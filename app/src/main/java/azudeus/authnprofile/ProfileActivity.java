@@ -9,8 +9,11 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static azudeus.authnprofile.R.id.recycler_view;
 
@@ -38,6 +41,13 @@ public class ProfileActivity extends AppCompatActivity {
         Bundle param = getIntent().getExtras();
         token = param.getString("token");
         Log.d("Token : ",token);
+
+        JSONObject responsejson = null;
+        try {
+            responsejson = new GetProfileAsync().execute(token).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
         profile_name = (TextView) findViewById(R.id.profile_name);
         profile_name.setTypeface(null, Typeface.BOLD);
