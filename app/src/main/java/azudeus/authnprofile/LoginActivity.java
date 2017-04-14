@@ -3,10 +3,19 @@ package azudeus.authnprofile;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText field_username;
@@ -44,7 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        Toast.makeText(this,username, Toast.LENGTH_SHORT).show();
-
+        new PostAsync().execute(username,password);
     }
+
+
 }
