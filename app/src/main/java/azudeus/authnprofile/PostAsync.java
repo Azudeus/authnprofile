@@ -39,19 +39,16 @@ import static java.lang.System.in;
 public class PostAsync extends AsyncTask<String, String, JSONObject> {
     private static final String LOGIN_URL = "https://dev.prelo.id/api/auth/login";
     private ProgressDialog pDialog;
-    HttpURLConnection conn;
+    HttpsURLConnection conn;
     StringBuilder result;
     JSONObject jObj = null;
     OutputStream os;
-    String boundary="==="+System.currentTimeMillis()+"===";
-    PrintWriter writer;
-    private static final String LINE_FEED = "\r\n";
 
     @Override
     protected JSONObject doInBackground(String... args){
         try {
             URL url = new URL(LOGIN_URL);
-            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn = (HttpsURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setReadTimeout(10000);
