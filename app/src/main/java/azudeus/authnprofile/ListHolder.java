@@ -1,6 +1,7 @@
 package azudeus.authnprofile;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,6 +24,7 @@ public class ListHolder extends RecyclerView.ViewHolder {
     public ListHolder(View v){
         super(v);
         vName = (TextView)v.findViewById(R.id.info_text);
+        vName.setTypeface(null, Typeface.BOLD);
         vImage = (ImageView)v.findViewById(R.id.info_image);
         vPrice = (TextView)v.findViewById(R.id.info_price);
     }
