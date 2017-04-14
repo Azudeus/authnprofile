@@ -30,6 +30,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import static android.R.attr.password;
 import static android.icu.lang.UCharacter.LineBreak.LINE_FEED;
+import static java.lang.System.in;
 
 /**
  * Created by Personal on 4/14/2017.
@@ -68,18 +69,23 @@ public class PostAsync extends AsyncTask<String, String, JSONObject> {
             writer.close();
             os.close();
 
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            result = new StringBuilder();
-            String line;
-            while((line = reader.readLine()) != null){
-                result.append(line);
-            }
-            Log.d("Result",result.toString());
+            Log.d("Status",Integer.toString(conn.getResponseCode()));
+            if(conn.getResponseCode()==200) {
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                Log.d("Result", result.toString());
 
-            conn.disconnect();
-            jObj = new JSONObject(result.toString());
-            return jObj;
+                conn.disconnect();
+                jObj = new JSONObject(result.toString());
+                return jObj;
+            }else{
+                return null;
+            }
         } catch (IOException | JSONException e ){
             e.printStackTrace();
         }
