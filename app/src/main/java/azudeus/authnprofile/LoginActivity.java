@@ -1,5 +1,6 @@
 package azudeus.authnprofile;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -64,9 +65,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if(responsejson!=null){
-            User user = new User(responsejson);
             Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show();
-
+            Intent toProfile = new Intent(this, ProfileActivity.class);
+            Bundle param = new Bundle();
+            param.putString("userinfo",responsejson.toString());
+            toProfile.putExtras(param);
+            startActivity(toProfile);
+            finish();
         }else{
             Toast.makeText(this,"Error response",Toast.LENGTH_SHORT).show();
         }
