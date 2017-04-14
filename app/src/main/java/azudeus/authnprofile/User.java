@@ -10,7 +10,6 @@ import org.json.JSONObject;
 public class User {
     JSONObject userdata;
     JSONObject lovelist;
-
     public User(){
         userdata = null;
     }
@@ -22,7 +21,6 @@ public class User {
             e.printStackTrace();
         }
     }
-
     public void addLoveList(JSONObject responsejson){
         lovelist = responsejson;
     }
@@ -34,6 +32,47 @@ public class User {
             return null;
         }
     }
-
+    public String getImageURL(){
+        try {
+            return userdata.getJSONObject("profile").getString("pict");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getUsername(){
+        try {
+            return userdata.getString("username");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getEmail(){
+        try {
+            return userdata.getString("email");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getFullname(){
+        try {
+            return userdata.getString("fullname");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getAddress(){
+        try {
+            JSONObject default_address = userdata.getJSONObject("default_address");
+            return default_address.getString("subdistrict_name")+","+
+                    default_address.getString("region_name")+","+default_address.getString("province_name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

@@ -18,7 +18,6 @@
            android:layout_width="96dp"
            android:layout_height="96dp"
            app:civ_border_width="2dp"
-           android:src="@drawable/profile"
            app:civ_border_color="#000000"
            android:layout_marginLeft="5dp"
            android:layout_marginRight="5dp"/>
@@ -31,26 +30,22 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:id="@+id/profile_name"
-               android:textSize="20sp"
-               android:text="Rytlock Brimstone"/>
+               android:textSize="20sp"/>
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:id="@+id/profile_username"
-               android:layout_marginTop="5dp"
-               android:text="rytlock"/>
+               android:layout_marginTop="5dp"/>
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:id="@+id/profile_email"
-               android:layout_marginTop="5dp"
-               android:text="rytlock@ascalon.com"/>
+               android:layout_marginTop="5dp"/>
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:id="@+id/profile_location"
-               android:layout_marginTop="5dp"
-               android:text="Coblong, Bandung, Jawa Barat"/>
+               android:layout_marginTop="5dp"/>
        </LinearLayout>
    </LinearLayout>
 
