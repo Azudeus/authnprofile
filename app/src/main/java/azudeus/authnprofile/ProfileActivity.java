@@ -79,28 +79,11 @@ public class ProfileActivity extends AppCompatActivity {
         recycler_view.setLayoutManager(mLayoutManager);
 
         ArrayList<CardElement> dataset = new ArrayList<CardElement>();
-        dataset.add(new CardElement("Satu-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Dua-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Tiga-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Empat-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Satu-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Dua-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Tiga-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Empat-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Satu-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Dua-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Tiga-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Empat-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Satu-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Dua-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Tiga-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Empat-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Satu-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Dua-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Tiga-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-        dataset.add(new CardElement("Empat-satu","https://image.flaticon.com/teams/new/1-freepik.jpg",12000));
-
-        mAdapter = new AlAdapter(dataset);
+        for(int i=0;i<user.countLoveList();i++){
+            dataset.add(new CardElement(user.getItemName(i),
+                    user.getItemImage(i),Integer.parseInt(user.getItemPrice(i))));
+        }
+        mAdapter = new AlAdapter(getApplicationContext(),dataset);
         recycler_view.setAdapter(mAdapter);
 
 

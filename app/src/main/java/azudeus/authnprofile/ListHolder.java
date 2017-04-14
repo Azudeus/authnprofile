@@ -20,9 +20,11 @@ public class ListHolder extends RecyclerView.ViewHolder {
     protected TextView vName;
     protected ImageView vImage;
     protected TextView vPrice;
+    protected Context context;
 
-    public ListHolder(View v){
+    public ListHolder(Context context, View v){
         super(v);
+        this.context = context;
         vName = (TextView)v.findViewById(R.id.info_text);
         vName.setTypeface(null, Typeface.BOLD);
         vImage = (ImageView)v.findViewById(R.id.info_image);
@@ -30,6 +32,6 @@ public class ListHolder extends RecyclerView.ViewHolder {
     }
 
     public void setGlideImage(String url){
-
+        Glide.with(context).load(url).into(vImage);
     }
 }

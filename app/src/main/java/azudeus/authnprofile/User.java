@@ -1,5 +1,6 @@
 package azudeus.authnprofile;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +10,7 @@ import org.json.JSONObject;
 
 public class User {
     JSONObject userdata;
-    JSONObject lovelist;
+    JSONArray lovelist;
     public User(){
         userdata = null;
     }
@@ -22,7 +23,11 @@ public class User {
         }
     }
     public void addLoveList(JSONObject responsejson){
-        lovelist = responsejson;
+        try {
+            lovelist = responsejson.getJSONArray("_data");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
     public String getToken(){
         try {
@@ -74,5 +79,35 @@ public class User {
             return null;
         }
     }
+    public String getItemName(int i){
+        try {
+            return lovelist.getJSONObject(i).getString("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getItemPrice(int i){
+        try {
+            return lovelist.getJSONObject(i).getString("price");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getItemImage(int i){
+        try {
+            return lovelist.getJSONObject(i).getJSONArray("display_picts").getString(0);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public int countLoveList(){
+        return lovelist.length();
+    }
+
+
 
 }
