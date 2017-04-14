@@ -65,11 +65,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if(responsejson!=null){
-            User user = new User(responsejson);
             Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show();
             Intent toProfile = new Intent(this, ProfileActivity.class);
             Bundle param = new Bundle();
-            param.putString("token",user.getToken());
+            param.putString("userinfo",responsejson.toString());
             toProfile.putExtras(param);
             startActivity(toProfile);
             finish();

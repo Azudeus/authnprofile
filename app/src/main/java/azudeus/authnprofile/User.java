@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 public class User {
     JSONObject userdata;
+    JSONObject lovelist;
 
     public User(){
         userdata = null;
@@ -22,6 +23,9 @@ public class User {
         }
     }
 
+    public void addLoveList(JSONObject responsejson){
+        lovelist = responsejson;
+    }
     public String getToken(){
         try {
             return userdata.getString("token");

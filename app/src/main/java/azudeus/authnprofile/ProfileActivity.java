@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -30,8 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     private RecyclerView recycler_view;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
-    private String token;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +39,20 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         Bundle param = getIntent().getExtras();
-        token = param.getString("token");
-        Log.d("Token : ",token);
+        String userinfo = param.getString("userinfo");
+        try {
+            user = new User(new JSONObject(userinfo));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         JSONObject responsejson = null;
         try {
-            responsejson = new GetProfileAsync().execute(token).get();
+            responsejson = new GetProfileAsync().execute(user.getToken()).get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        user.addLoveList(responsejson);
 
         profile_name = (TextView) findViewById(R.id.profile_name);
         profile_name.setTypeface(null, Typeface.BOLD);
