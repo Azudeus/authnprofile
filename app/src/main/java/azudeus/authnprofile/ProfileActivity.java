@@ -81,7 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
         ArrayList<CardElement> dataset = new ArrayList<CardElement>();
         for(int i=0;i<user.countLoveList();i++){
             dataset.add(new CardElement(user.getItemName(i),
-                    user.getItemImage(i),Integer.parseInt(user.getItemPrice(i))));
+                    user.getItemImage(i),Integer.parseInt(user.getItemPrice(i)),user.getItemId(i)));
         }
         mAdapter = new AlAdapter(getApplicationContext(),dataset);
         recycler_view.setAdapter(mAdapter);

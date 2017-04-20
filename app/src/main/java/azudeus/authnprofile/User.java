@@ -95,6 +95,14 @@ public class User {
             return null;
         }
     }
+    public String getItemId(int i){
+        try {
+            return lovelist.getJSONObject(i).getString("_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public String getItemImage(int i){
         try {
             return lovelist.getJSONObject(i).getJSONArray("display_picts").getString(0);

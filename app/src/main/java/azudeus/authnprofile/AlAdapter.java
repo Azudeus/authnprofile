@@ -33,9 +33,11 @@ public class AlAdapter extends RecyclerView.Adapter<ListHolder>{
         String name = list.get(i).name;
         String url = list.get(i).url;
         int price = list.get(i).price;
+        String id = list.get(i).id;
         listholder.vName.setText(name);
         listholder.vPrice.setText(Integer.toString(price));
         listholder.setGlideImage(url);
+        listholder.id = id;
     }
 
     @Override
